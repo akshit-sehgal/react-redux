@@ -27,6 +27,19 @@ const reducer = (currentState = initialState, action)=>{
             ...currentState,
             results: currentState.results.concat({id:new Date(),value:currentState.counter})
         } 
+        case 'DELETE_RESULT': 
+            // const id = 2;
+            // const newArray = [...currentState.results];
+            // newArray.results.splice(id,1);
+            const newArray = currentState.results
+            .filter(
+                (result)=> {
+                return result.id !== action.resultElementId;
+            });
+        return {
+            ...currentState,
+            results: newArray
+        }
     }
     return currentState;
 };
